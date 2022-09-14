@@ -26,7 +26,7 @@
             yScale = d3.scaleLinear().range([height, 0]);
         var g = svg.append("g")
             .attr("transform", "translate(" + 100 + "," + 100 + ")");
-        d3.csv("/botulism_yearly_counts.csv").then(function (data) {
+        d3.csv("botulism_yearly_counts.csv").then(function (data) {
             xScale.domain(d3.extent(data, function (d) { return d.year; })).nice();
             yScale.domain(d3.extent(data, function (d) { return +d.count; })).nice();
             g.append("g")
