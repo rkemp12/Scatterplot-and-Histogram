@@ -74,7 +74,7 @@
                 .attr("x", 30)
                 .attr("y", 50)
                 .attr("font-size", "22px")
-                .text("The amount of botulism type cases every four years")
+                .text("The amount of seperate botulism type cases every four years")
 
             var xScale2 = d3.scaleLinear()
                 .range([0, width])
@@ -96,11 +96,11 @@
                     .attr("transform", "translate(0," + height + ")")
                     .call(d3.axisBottom(xScale2))
                     .append("text")
-                    .attr("y", height - 160)
-                    .attr("x", width - 300)
+                    .attr("y", height - 380)
+                    .attr("x", width - 235)
                     .attr("text-anchor", "end")
                     .attr("stroke", "black")
-                    .text("Year");
+                    .text("Infant Botulism discovered");
                 g2.append("g")
                     .call(d3.axisLeft(yScale2).tickFormat(function (d) { return "Cases\n" + d; }).ticks(10))
                     .append("text")
