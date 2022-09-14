@@ -7,126 +7,125 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body onload="main()">
-<script>
-    function main() {
-        var svg = d3.select("#svg1"),
-            margin = 200,
-            width = svg.attr("width") - margin,
-            height = svg.attr("height") - margin;
+    <script>
+        function main() {
+            var svg1 = d3.select("#svg1"),
+                margin = 200,
+                width = svg1.attr("width") - margin,
+                height = svg1.attr("height") - margin;
 
-            
-        svg.append("text")
-            .attr("transform", "translate(100,0)")
-            .attr("x", 30)
-            .attr("y", 50)
-            .attr("font-size", "22px")
-            .text("Amount of Botulism cases every year from 1917 - 2017")
 
-        var xScale = d3.scaleLinear().range([0, width]),
-            yScale = d3.scaleLinear().range([height, 0]);
-        var g = svg.append("g")
-            .attr("transform", "translate(" + 100 + "," + 100 + ")");
-        d3.csv("botulism_yearly_counts.csv").then(function (data) {
-            xScale.domain(d3.extent(data, function (d) { return d.year; })).nice();
-            yScale.domain(d3.extent(data, function (d) { return +d.count; })).nice();
-            g.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(xScale))
-                .append("text")
-                .attr("y", height - 160)
-                .attr("x", width - 300)
-                .attr("text-anchor", "end")
-                .attr("stroke", "black")
-                .text("Year");
-            g.append("g")
-                .call(d3.axisLeft(yScale).tickFormat(function (d) { return "Cases\n" + d; }).ticks(10))
-                .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", -20)
-                .attr("x", -60)
-                .attr('dy', '-5em')
-                .attr('text-anchor', 'end')
-                .attr('stroke', 'black')
-                .text('Amount of cases')
-            g.selectAll(".dot")
-                .data(data)
-                .enter().append("circle")
-                .attr("class", "dot")
-                .attr('r', 3.5)
-                .attr("cx", function (d) { return xScale(d.year); })
-                .attr("cy", function (d) { return yScale(d.count); })
-            g.append("path")
-                .datum(data)
-                .attr("fill", "none")
-                .attr("stroke", "#69b3a2")
-                .attr("stroke-width", 1.5)
-                .attr("d", d3.line()
-                    .x(function (d) { return xScale(d.year) })
-                    .y(function (d) { return yScale(d.count) })
-                )
-        })
-        var svg2 = d3.select("#svg2"),
-            margin = 200,
-            width = svg2.attr("width") - margin,
-            height = svg2.attr("height") - margin;
-        svg2.append("text")
-            .attr("transform", "translate(100,0)")
-            .attr("x", 30)
-            .attr("y", 50)
-            .attr("font-size", "22px")
-            .text("Amount of Botulism cases every year from 1917 - 2017")
+            svg1.append("text")
+                .attr("transform", "translate(100,0)")
+                .attr("x", 30)
+                .attr("y", 50)
+                .attr("font-size", "22px")
+                .text("Amount of Botulism cases every year from 1917 - 2017")
 
-        var xScale = d3.scaleLinear()
-            .range([0, width])
-            .domain([0, 2020]),
-            yScale = d3.scaleLinear().range([height, 0]);
-        var g = svg2.append("g")
-            .attr("transform", "translate(" + 100 + "," + 100 + ")");
-        d3.csv("botulism_type_counts.csv").then(function (data) {
-            xScale.domain(d3.extent(data, function (d) { return d.year; })).nice();
-            yScale.domain(d3.extent(data, function (d) { return +d.count; })).nice();
-            var histogram
-            g.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(xScale))
-                .append("text")
-                .attr("y", height - 160)
-                .attr("x", width - 300)
-                .attr("text-anchor", "end")
-                .attr("stroke", "black")
-                .text("Year");
-            g.append("g")
-                .call(d3.axisLeft(yScale).tickFormat(function (d) { return "Cases\n" + d; }).ticks(10))
-                .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", -20)
-                .attr("x", -60)
-                .attr('dy', '-5em')
-                .attr('text-anchor', 'end')
-                .attr('stroke', 'black')
-                .text('Amount of cases')
-            g.selectAll(".dot")
-                .data(data)
-                .enter().append("circle")
-                .attr("class", "dot")
-                .attr('r', 3.5)
-                .attr("cx", function (d) { return xScale(d.year); })
-                .attr("cy", function (d) { return yScale(d.count); })
-            g.append("path")
-                .datum(data)
-                .attr("fill", "none")
-                .attr("stroke", "#69b3a2")
-                .attr("stroke-width", 1.5)
-                .attr("d", d3.line()
-                    .x(function (d) { return xScale(d.year) })
-                    .y(function (d) { return yScale(d.count) })
-                )
-        })
+            var xScale = d3.scaleLinear().range([0, width]),
+                yScale = d3.scaleLinear().range([height, 0]);
+            var g = svg1.append("g")
+                .attr("transform", "translate(" + 100 + "," + 100 + ")");
+            d3.csv("botulism_yearly_counts.csv").then(function (data) {
+                xScale.domain(d3.extent(data, function (d) { return d.year; })).nice();
+                yScale.domain(d3.extent(data, function (d) { return +d.count; })).nice();
+                g.append("g")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(d3.axisBottom(xScale))
+                    .append("text")
+                    .attr("y", height - 160)
+                    .attr("x", width - 300)
+                    .attr("text-anchor", "end")
+                    .attr("stroke", "black")
+                    .text("Year");
+                g.append("g")
+                    .call(d3.axisLeft(yScale).tickFormat(function (d) { return "Cases\n" + d; }).ticks(10))
+                    .append("text")
+                    .attr("transform", "rotate(-90)")
+                    .attr("y", -20)
+                    .attr("x", -60)
+                    .attr('dy', '-5em')
+                    .attr('text-anchor', 'end')
+                    .attr('stroke', 'black')
+                    .text('Amount of cases')
+                g.selectAll(".dot")
+                    .data(data)
+                    .enter().append("circle")
+                    .attr("class", "dot")
+                    .attr('r', 3.5)
+                    .attr("cx", function (d) { return xScale(d.year); })
+                    .attr("cy", function (d) { return yScale(d.count); })
+                g.append("path")
+                    .datum(data)
+                    .attr("fill", "none")
+                    .attr("stroke", "#69b3a2")
+                    .attr("stroke-width", 1.5)
+                    .attr("d", d3.line()
+                        .x(function (d) { return xScale(d.year) })
+                        .y(function (d) { return yScale(d.count) })
+                    )
+            })
+            var svg2 = d3.select("#svg2"),
+                margin = 200,
+                width = svg2.attr("width") - margin,
+                height = svg2.attr("height") - margin;
+            svg2.append("text")
+                .attr("transform", "translate(100,0)")
+                .attr("x", 30)
+                .attr("y", 50)
+                .attr("font-size", "22px")
+                .text("The amount of botulism type cases every four years")
 
-    }
-</script>
-    <h1>Hypythesis: The amount of foodborne Botulism decreased over time compared to other types because of stricter food laws.</h1>
+            var xScale2 = d3.scaleLinear()
+                .range([0, width])
+                .domain([0, 2020]);
+
+            var g2 = svg2.append("g")
+                .attr("transform", "translate(" + 100 + "," + 100 + ")");
+            d3.csv("botulism_type_counts.csv").then(function (data) {
+                xScale2.domain(d3.extent(data, function (d) { return d.year; })).nice();
+                var histogram = d3.histogram()
+                    .value(function (d) { return d.year })
+                    .domain(xScale2.domain())
+                    .thresholds(xScale2.ticks(25));
+                var bins = histogram(data);
+                yScale2 = d3.scaleLinear()
+                    .range([height, 0])
+                    .domain([0, d3.max(bins, function (d) { return +d.length; })]);
+                g2.append("g")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(d3.axisBottom(xScale2))
+                    .append("text")
+                    .attr("y", height - 160)
+                    .attr("x", width - 300)
+                    .attr("text-anchor", "end")
+                    .attr("stroke", "black")
+                    .text("Year");
+                g2.append("g")
+                    .call(d3.axisLeft(yScale2).tickFormat(function (d) { return "Cases\n" + d; }).ticks(10))
+                    .append("text")
+                    .attr("transform", "rotate(-90)")
+                    .attr("y", -20)
+                    .attr("x", -60)
+                    .attr('dy', '-5em')
+                    .attr('text-anchor', 'end')
+                    .attr('stroke', 'black')
+                    .text('Amount of cases')
+                g2.selectAll("rect")
+                    .data(bins)
+                    .enter()
+                    .append("rect")
+                    .attr("x", 1)
+                    .attr("transform", function (d) { return "translate(" + xScale2(d.x0) + "," + yScale2(d.length) + ")"; })
+                    .attr("width", function (d) { return xScale2(d.x1) - xScale2(d.x0) - 1; })
+                    .attr("height", function (d) { return height - yScale2(d.length); })
+                    .style("fill", function (d) { return "#69b3a2" })
+            })
+
+        }
+    </script>
+    <h1>Hypythesis: The amount of botulism cases increased over time because new types were discovered.</h1>
     <svg width="800" height="400" id="svg1"></svg>
-    <svg width="400" height="800" id="svg2"></svg>
+    <svg width="800" height="400" id="svg2"></svg>
 </body>
 </html>
